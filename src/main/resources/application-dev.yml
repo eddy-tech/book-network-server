@@ -17,20 +17,23 @@ spring:
 
 ########## Mailing Configuration ################
   mail:
-    host: localhost
-    port: 1025
-    username: eddy
-    password: password123!
+    host: ${EMAIL_HOST_NAME}
+    port: 468
+    username: ${EMAIL_USER_NAME}
+    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:
-          trust: "*"
         auth: true
+        ssl:
+          enable: true
+          trust: "*"
         starttls:
           enable: true
-        connectiontimeout: 5000
-        timeout: 3000
-        writetimeout: 5000
+    protocol: smtp
+#        connectiontimeout: 5000
+#        timeout: 3000
+#        writetimeout: 5000
 
 ###########   Security Configuration #############
 application:
@@ -44,6 +47,8 @@ application:
     frontend:
       activation-url: http://localhost:4200/activate-account
 
+  cors:
+    origins: http://localhost:4200,http://localhost:8080
 
 ############################## Upload File #########################
   file:
